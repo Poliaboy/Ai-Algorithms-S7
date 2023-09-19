@@ -1,1 +1,1 @@
-# AiAlgorithmsS7
+# Ai Algorithms S7
