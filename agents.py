@@ -585,7 +585,7 @@ class GraphicEnvironment(XYEnvironment):
         self.visible = True
 
     def draw_world(self):
-        self.grid[:] = (200, 200, 200)
+        #self.grid[:,] = (200, 200, 200)
         world = self.get_world()
         for x in range(0, len(world)):
             for y in range(0, len(world[x])):
