@@ -8,6 +8,7 @@ functions.
 
 import sys
 from collections import deque
+import ipywidgets
 
 from FunUtil import *
 
@@ -265,9 +266,30 @@ def uniform_cost_search(problem, display=False):
 
 
 def depth_limited_search(problem, limit=50):
+    """
+    Perform depth limited search on the problem to a specified depth limit.
+    """
 
-    # insert your code
-    pass
+    def recursive_dls(node, problem, limit):
+        """
+        Recursively perform depth limited search.
+        """
+        if problem.goal_test(node.state):
+            return node  # Return the goal node if found
+        elif limit == 0:
+            return 'cutoff'  # Cut off the search at the specified limit
+        else:
+            cutoff_occurred = False
+            for child in node.expand(problem):
+                result = recursive_dls(child, problem, limit - 1)
+                if result == 'cutoff':
+                    cutoff_occurred = True
+                elif result is not None:
+                    return result  # Return the goal node if found
+            return 'cutoff' if cutoff_occurred else None
+
+    # Start the search from the initial state of the problem
+    return recursive_dls(Node(problem.initial), problem, limit)
 
 
 def iterative_deepening_search(problem):
