@@ -11,6 +11,9 @@ from IPython.display import display
 from PIL import Image
 from matplotlib import lines
 
+from search import GraphProblem
+
+
 #from games import TicTacToe, alpha_beta_player, random_player, Fig52Extended
 #from learning import DataSet
 #from logic import parse_definite_clause, standardize_variables, unify_mm, subst

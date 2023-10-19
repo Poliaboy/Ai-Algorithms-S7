@@ -184,8 +184,28 @@ def depth_first_graph_search(problem):
     Does not get trapped by loops.
     If two paths reach a state, only use the first one.
     """
-    # insert your code
-    pass
+    # Create a stack for the frontier and a set for the explored nodes
+    frontier = [Node(problem.initial)]
+    explored = set()
+
+    while frontier:
+        # Pop the node from the stack (LIFO)
+        node = frontier.pop()
+
+        # If the node contains the goal state, return the solution
+        if problem.goal_test(node.state):
+            return node
+
+        # Mark the node as explored
+        explored.add(node.state)
+
+        # Add the successors of the node to the frontier
+        # if they are not explored and not already in the frontier
+        frontier.extend(child for child in node.expand(problem)
+                        if child.state not in explored and
+                        child not in (existing_node.state for existing_node in frontier))
+
+    return None  # Return None if no solution is found
 
 
 def breadth_first_graph_search(problem):
